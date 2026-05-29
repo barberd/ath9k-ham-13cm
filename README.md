@@ -66,7 +66,7 @@ See: https://wiki.ubuntu.com/UEFI/SecureBoot/DKMS
 
 ```bash
 # Clone this repo
-git clone https://github.com/youruser/ath9k-ham-13cm.git
+git clone https://github.com/barberd/ath9k-ham-13cm.git
 cd ath9k-ham-13cm
 
 # Apply kernel patches and build modules
