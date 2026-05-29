@@ -1,0 +1,52 @@
+--- a/drivers/net/wireless/ath/regd.c
++++ b/drivers/net/wireless/ath/regd.c
+@@ -33,9 +33,9 @@ static int __ath_regd_init(struct ath_regulatory *reg);
+  */
+ 
+ /* Only these channels all allow active scan on all world regulatory domains */
+-#define ATH_2GHZ_CH01_11	REG_RULE(2412-10, 2462+10, 40, 0, 20, 0)
++#define ATH_2GHZ_CH01_11	REG_RULE(2312, 2472, 40, 0, 30, 0)
+ 
+ /* We enable active scan on these a case by case basis by regulatory domain */
+-#define ATH_2GHZ_CH12_13	REG_RULE(2467-10, 2472+10, 40, 0, 20,\
+-					 NL80211_RRF_NO_IR)
++#define ATH_2GHZ_CH12_13	REG_RULE(2472, 2732, 40, 0, 30, 0)
++
+ #define ATH_2GHZ_CH14		REG_RULE(2484-10, 2484+10, 40, 0, 20,\
+ 					 NL80211_RRF_NO_IR | \
+ 					 NL80211_RRF_NO_OFDM)
+--- a/drivers/net/wireless/ath/ath9k/hw.h
++++ b/drivers/net/wireless/ath/ath9k/hw.h
+@@ -76,3 +76,3 @@
+ #define ATH9K_RSSI_BAD			-128
+ 
+-#define ATH9K_NUM_CHANNELS	38
++#define ATH9K_NUM_CHANNELS	58
+ 
+--- a/drivers/net/wireless/ath/ath9k/common-init.c
++++ b/drivers/net/wireless/ath/ath9k/common-init.c
+@@ -40,3 +40,23 @@
+ static const struct ieee80211_channel ath9k_2ghz_chantable[] = {
++	CHAN2G(2312, 14), /* 2312 MHz */
++	CHAN2G(2317, 15), /* 2317 MHz */
++	CHAN2G(2322, 16), /* 2322 MHz */
++	CHAN2G(2327, 17), /* 2327 MHz */
++	CHAN2G(2332, 18), /* 2332 MHz */
++	CHAN2G(2337, 19), /* 2337 MHz */
++	CHAN2G(2342, 20), /* 2342 MHz */
++	CHAN2G(2347, 21), /* 2347 MHz */
++	CHAN2G(2352, 22), /* 2352 MHz */
++	CHAN2G(2357, 23), /* 2357 MHz */
++	CHAN2G(2362, 24), /* 2362 MHz */
++	CHAN2G(2367, 25), /* 2367 MHz */
++	CHAN2G(2372, 26), /* 2372 MHz */
++	CHAN2G(2377, 27), /* 2377 MHz */
++	CHAN2G(2382, 28), /* 2382 MHz */
++	CHAN2G(2387, 29), /* 2387 MHz */
++	CHAN2G(2392, 30), /* 2392 MHz */
++	CHAN2G(2397, 31), /* 2397 MHz */
++	CHAN2G(2402, 32), /* 2402 MHz */
++	CHAN2G(2407, 33), /* 2407 MHz */
+ 	CHAN2G(2412, 0), /* Channel 1 */
+ 	CHAN2G(2417, 1), /* Channel 2 */
+ 	CHAN2G(2422, 2), /* Channel 3 */

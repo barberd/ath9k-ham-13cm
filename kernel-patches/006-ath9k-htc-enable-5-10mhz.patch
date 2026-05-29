@@ -1,0 +1,10 @@
+--- a/drivers/net/wireless/ath/ath9k/htc_drv_init.c
++++ b/drivers/net/wireless/ath/ath9k/htc_drv_init.c
+@@ -749,6 +749,7 @@
+ 		    WIPHY_FLAG_HAS_REMAIN_ON_CHANNEL |
+ 		    WIPHY_FLAG_HAS_CHANNEL_SWITCH;
+ 
++	hw->wiphy->flags |= WIPHY_FLAG_SUPPORTS_5_10_MHZ;
+ 	hw->wiphy->flags |= WIPHY_FLAG_SUPPORTS_TDLS;
+ 
+ 	hw->queues = 4;

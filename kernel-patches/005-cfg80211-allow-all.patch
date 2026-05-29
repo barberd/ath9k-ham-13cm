@@ -1,0 +1,47 @@
+--- a/net/wireless/reg.c
++++ b/net/wireless/reg.c
+@@ -1609,6 +1609,22 @@
+ 	return channel_flags;
+ }
+ 
++#ifdef CONFIG_CFG80211_CERTIFICATION_ONUS
++/* Permissive rule: allow everything when certification onus is accepted */
++static const struct ieee80211_reg_rule allow_all_rule = {
++	.freq_range = {
++		.start_freq_khz = MHZ_TO_KHZ(2000),
++		.end_freq_khz = MHZ_TO_KHZ(7200),
++		.max_bandwidth_khz = MHZ_TO_KHZ(160),
++	},
++	.power_rule = {
++		.max_antenna_gain = DBI_TO_MBI(6),
++		.max_eirp = DBM_TO_MBM(30),
++	},
++	.flags = 0,
++};
++#endif
++
+ static const struct ieee80211_reg_rule *
+ freq_reg_info_regd(u32 center_freq,
+ 		   const struct ieee80211_regdomain *regd, u32 bw)
+@@ -1614,6 +1630,10 @@
+ 	int i;
+ 	bool band_rule_found = false;
+ 	bool bw_fits = false;
++
++#ifdef CONFIG_CFG80211_CERTIFICATION_ONUS
++	return &allow_all_rule;
++#endif
+ 
+ 	if (!regd)
+ 		return ERR_PTR(-EINVAL);
+@@ -1650,6 +1670,10 @@
+ __freq_reg_info(struct wiphy *wiphy, u32 center_freq, u32 min_bw)
+ {
+ 	const struct ieee80211_regdomain *regd = reg_get_regdomain(wiphy);
++
++#ifdef CONFIG_CFG80211_CERTIFICATION_ONUS
++	return &allow_all_rule;
++#endif
+ 	static const u32 bws[] = {0, 1, 2, 4, 5, 8, 10, 16, 20};
+ 	const struct ieee80211_reg_rule *reg_rule = ERR_PTR(-ERANGE);
+ 	int i = ARRAY_SIZE(bws) - 1;

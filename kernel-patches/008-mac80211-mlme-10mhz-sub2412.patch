@@ -1,0 +1,14 @@
+--- a/net/mac80211/mlme.c
++++ b/net/mac80211/mlme.c
+@@ -178,6 +178,12 @@
+ 		.freq1_offset = channel->freq_offset,
+ 	};
+ 
++	/* Use 10 MHz for sub-2412 ham radio channels */
++	if (channel->center_freq < 2412) {
++		chandef->width = NL80211_CHAN_WIDTH_10;
++		return IEEE80211_CONN_MODE_LEGACY;
++	}
++
+ 	/* get special S1G case out of the way */
+ 	if (sband->band == NL80211_BAND_S1GHZ) {

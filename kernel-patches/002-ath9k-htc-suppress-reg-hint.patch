@@ -1,0 +1,12 @@
+--- a/drivers/net/wireless/ath/ath9k/htc_drv_init.c
++++ b/drivers/net/wireless/ath/ath9k/htc_drv_init.c
+@@ -881,7 +881,8 @@ static int ath9k_init_device(struct ath9k_htc_priv *priv,
+ 		goto err_register;
+ 
+ 	/* Handle world regulatory */
+-	if (!ath_is_world_regd(reg)) {
++	if (!IS_ENABLED(CONFIG_ATH_REG_DYNAMIC_USER_CERT_TESTING) &&
++	    !ath_is_world_regd(reg)) {
+ 		error = regulatory_hint(hw->wiphy, reg->alpha2);
+ 		if (error)
+ 			goto err_world;

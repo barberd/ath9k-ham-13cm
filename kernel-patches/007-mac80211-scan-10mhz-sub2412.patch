@@ -1,0 +1,15 @@
+--- a/net/mac80211/scan.c
++++ b/net/mac80211/scan.c
+@@ -1012,7 +1012,11 @@
+ 	if (chan == local->hw.conf.chandef.chan)
+ 		local->scan_chandef = local->hw.conf.chandef;
+ 	else
+-		local->scan_chandef.width = NL80211_CHAN_WIDTH_20_NOHT;
++		if (chan->center_freq < 2412)
++			local->scan_chandef.width = NL80211_CHAN_WIDTH_10;
++		else
++			local->scan_chandef.width = NL80211_CHAN_WIDTH_20_NOHT;
++
+ 
+ set_channel:
+ 	if (ieee80211_hw_conf_chan(local))
