@@ -65,6 +65,11 @@ See: https://wiki.ubuntu.com/UEFI/SecureBoot/DKMS
 ## Quick Start
 
 ```bash
+# Ensure your kernel config has this option enabled:
+#   CONFIG_ATH_REG_DYNAMIC_USER_CERT_TESTING=y
+# Without it, the regulatory domain patches will have no effect.
+# Add it to /usr/src/linux-*/.config and run: make olddefconfig
+
 # Clone this repo
 git clone https://github.com/barberd/ath9k-ham-13cm.git
 cd ath9k-ham-13cm
