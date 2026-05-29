@@ -41,6 +41,27 @@ ham radio data link.
   DS Parameter Set IE removed from beacons (see AP Setup below)
 - **License**: Valid Amateur Radio license (US: Technician or higher)
 
+## Tested Versions
+
+- **Linux kernel**: 6.17.13
+- **wpa_supplicant**: 2.11
+- **iw**: 6.9
+
+Patches target these versions. Offsets may vary on other kernel versions but
+the same code paths exist in 5.15+ kernels.
+
+## Secure Boot
+
+These patches modify the kernel's wireless regulatory enforcement. On systems
+with UEFI Secure Boot enabled, unsigned kernel modules will be rejected.
+
+You must either:
+- **Disable Secure Boot** in BIOS/UEFI settings, or
+- **Enroll a Machine Owner Key (MOK)** and sign your rebuilt kernel/modules
+  with that key using `mokutil` and `sbsign`
+
+See: https://wiki.ubuntu.com/UEFI/SecureBoot/DKMS
+
 ## Quick Start
 
 ```bash
@@ -122,8 +143,9 @@ For an OpenWrt AP using ath5k (e.g., La Fonera FON2100A with AR2315), you need:
 - Bandwidth set to 10 MHz: `uci set wireless.radio0.chanbw='10'`
 - No encryption (Part 97 requirement): `uci set wireless.@wifi-iface[0].encryption='none'`
 
-See the [openwrt-aa](https://github.com/youruser/openwrt-aa) repo for a
-complete OpenWrt build with these patches.
+See the [openwrt-fon2100-ham](https://github.com/barberd/openwrt-fon2100-ham) repo for a
+complete OpenWrt Attitude Adjustment build for the La Fonera FON2100A with all
+necessary patches for the AP side.
 
 ## Station Identification
 
