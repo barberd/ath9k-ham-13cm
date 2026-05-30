@@ -158,11 +158,11 @@ Part 97 requires station identification. The convention for HSMM/AREDN
 networks is to encode your callsign as ASCII in the MAC address:
 
 ```bash
-# Example: N3LP-0 = 4E:33:4C:50:2D:30
-python3 -c "print('N3LP-0'.encode('ascii').hex(':'))"
+# Example: W1AW-0 = 57:31:41:57:2D:30
+python3 -c "print('W1AW-0'.encode('ascii').hex(':'))"
 
 # Set via NetworkManager:
-nmcli connection modify "YOUR-CONNECTION" wifi.cloned-mac-address 4E:33:4C:50:2D:30
+nmcli connection modify "YOUR-CONNECTION" wifi.cloned-mac-address 57:31:41:57:2D:30
 ```
 
 ## Tested Configuration
