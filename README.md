@@ -20,8 +20,10 @@ applicable laws and regulations in your jurisdiction.
 
 Enables an Atheros AR9271 USB WiFi adapter (ath9k_htc driver) to operate as a
 station (client) at **10 MHz bandwidth on 2397 MHz** — within the US Amateur
-Radio 13cm band allocation (2390–2450 MHz), entirely below the Part 15
-unlicensed band (2400–2483.5 MHz).
+Radio 13cm band allocation (2390–2450 MHz), below consumer WiFi channel 1
+(2412 MHz). The occupied spectrum (2392–2402 MHz) overlaps the Part 15 ISM
+band (2400–2483.5 MHz) by only 2 MHz, avoiding interference with standard
+WiFi devices.
 
 This avoids interference with consumer WiFi devices while providing a dedicated
 ham radio data link.
@@ -31,7 +33,8 @@ ham radio data link.
 - Center frequency: 2397 MHz
 - Bandwidth: 10 MHz
 - Occupied spectrum: 2392–2402 MHz
-- Entirely within Part 97 allocation, below Part 15
+- Within Part 97 allocation, below consumer WiFi channel 1 (2412 MHz)
+- Upper 2 MHz overlaps Part 15 ISM band; Part 97 is primary allocation
 
 ## Requirements
 
