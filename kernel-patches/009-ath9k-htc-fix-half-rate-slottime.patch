@@ -1,0 +1,13 @@
+--- a/drivers/net/wireless/ath/ath9k/htc_drv_main.c
++++ b/drivers/net/wireless/ath/ath9k/htc_drv_main.c
+@@ -1593,7 +1593,11 @@
+ 	if (changed & BSS_CHANGED_ERP_SLOT) {
+-		if (bss_conf->use_short_slot)
++		if (IS_CHAN_HALF_RATE(ah->curchan))
++			slottime = 13;
++		else if (IS_CHAN_QUARTER_RATE(ah->curchan))
++			slottime = 21;
++		else if (bss_conf->use_short_slot)
+ 			slottime = 9;
+ 		else
+ 			slottime = 20;

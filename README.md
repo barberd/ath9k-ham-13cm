@@ -113,6 +113,7 @@ All patches are in `kernel-patches/` and applied by `apply.sh`:
 | 006 | ath9k/htc_drv_init.c | Add WIPHY_FLAG_SUPPORTS_5_10_MHZ to ath9k_htc |
 | 007 | net/mac80211/scan.c | Scan at 10 MHz for sub-2412 MHz channels |
 | 008 | net/mac80211/mlme.c | Connect at 10 MHz for sub-2412 MHz channels |
+| 009 | ath9k/htc_drv_main.c | Fix half-rate slot time override after association |
 
 ### Why patches 007 and 008 are needed
 
