@@ -2,11 +2,11 @@
 
 ## ⚠️ LEGAL WARNING
 
-**Operating on frequencies outside the unlicensed ISM bands requires
-authorization.** In the United States, this includes FCC Part 97 (Amateur
-Radio), Part 90 (Land Mobile), or other licensed services with allocations in
-the 2.3–2.5 GHz range. Always verify your authorization covers the specific
-frequencies and power levels you intend to use.
+**Operating on frequencies outside the unlicensed ISM bands requires a valid
+amateur radio license (or equivalent authorization in your jurisdiction).** In
+the US, this means an FCC Part 97 license (Technician class or higher). Always
+comply with your local laws and regulations regarding radio transmissions,
+power limits, and station identification requirements.
 
 **Do not use this software unless you are legally authorized to transmit on
 the frequencies involved.** Unauthorized transmission on these frequencies is
