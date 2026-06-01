@@ -186,6 +186,35 @@ nmcli connection modify "YOUR-CONNECTION" wifi.cloned-mac-address 57:31:41:57:2D
 - Only OFDM rates work at 10 MHz (CCK/DSSS does not support half-rate)
 - No HT/VHT/HE — legacy 802.11a/g rates only
 
+## NetworkManager and Background Scanning
+
+NetworkManager's periodic background scans cause significant packet loss on
+10 MHz channels. During a background scan, the radio briefly switches to
+20 MHz on standard channels to look for other networks. This causes:
+
+1. Missed frames while off-channel
+2. The slot time being recalculated at 20 MHz width on return (patch 009 fixes
+   this, but the off-channel time still causes loss)
+
+**Recommended:** Remove the interface from NetworkManager and manage it
+manually with `iw` and `wpa_supplicant`:
+
+```bash
+nmcli device set wlx* managed no
+wpa_supplicant -i wlx* -c /path/to/wpa.conf -D nl80211 -B
+iw dev wlx* connect SSID 2397 BSSID auth open
+```
+
+If you must use NetworkManager, pin the BSSID to reduce roaming-triggered
+scans:
+
+```bash
+nmcli connection modify "YOUR-CONNECTION" wifi.bssid XX:XX:XX:XX:XX:XX
+```
+
+Note: there is currently no reliable way to fully disable background scanning
+in NetworkManager for a specific interface.
+
 ## License
 
 These patches are provided under the same licenses as the original projects
