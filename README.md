@@ -179,6 +179,40 @@ nmcli connection modify "YOUR-CONNECTION" wifi.cloned-mac-address 57:31:41:57:2D
 - **Throughput**: ~27 Mbps effective (54 Mbps OFDM at half-rate)
 - **Packet loss**: 0% at 30 feet
 
+## Ad-Hoc (IBSS) Mode
+
+Ad-hoc/IBSS mode is commonly used on ham-only frequencies and is the mode
+used by AREDN mesh networks. It avoids the AP/STA limitations with 10 MHz
+(no background scan issues, no ERP slot time override) and is natively
+supported by the kernel for 10 MHz channels without patches 007 and 008.
+
+### Client Setup
+
+```bash
+nmcli device set wlx* managed no
+ip link set wlx* down
+iw dev wlx* set type ibss
+ip link set wlx* up
+iw dev wlx* ibss join YOURCALL-2397 2397 10MHz 02:CA:FF:EE:BA:BE
+ip addr add 44.x.x.x/28 dev wlx*
+```
+
+The BSSID `02:CA:FF:EE:BA:BE` is the AREDN convention — all nodes on the
+same channel/bandwidth share this BSSID to form a single ad-hoc cell.
+
+### Advantages over AP/STA mode
+
+- No background scan interference
+- No ERP slot time override bug (patch 009 not needed)
+- Native 10 MHz support in the kernel (patches 007/008 not needed)
+- Compatible with AREDN mesh nodes (add babeld for routing)
+
+### Disadvantages
+
+- No captive portal (nodogsplash requires AP mode)
+- No WPA/WPA2 (IBSS encryption support is limited)
+- All nodes are peers — no centralized DHCP without explicit configuration
+
 ## Limitations
 
 - 10 MHz in AP/STA mode is non-standard (Atheros proprietary extension)
