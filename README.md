@@ -209,8 +209,8 @@ same channel/bandwidth share this BSSID to form a single ad-hoc cell.
 
 ### Disadvantages
 
-- No automatic beaconing for client discovery (clients must know the SSID/BSSID)
-- Manual client setup required (no "click to join" like AP mode)
+- Clients must know SSID and BSSID in advance to join (no "click to connect" UX)
+- Less tooling support (NetworkManager handles IBSS poorly compared to AP/STA)
 
 ## Limitations
 
