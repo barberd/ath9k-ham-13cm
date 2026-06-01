@@ -193,7 +193,7 @@ nmcli device set wlx* managed no
 ip link set wlx* down
 iw dev wlx* set type ibss
 ip link set wlx* up
-iw dev wlx* ibss join YOURCALL-2397 2397 10MHz 02:CA:FF:EE:BA:BE
+iw dev wlx* ibss join YOURCALL-2397 2397 10MHz XX:XX:XX:XX:XX:XX
 ip addr add 44.x.x.x/28 dev wlx*
 ```
 
@@ -205,13 +205,12 @@ same channel/bandwidth share this BSSID to form a single ad-hoc cell.
 - No background scan interference
 - No ERP slot time override bug (patch 009 not needed)
 - Native 10 MHz support in the kernel (patches 007/008 not needed)
-- Compatible with AREDN mesh nodes (add babeld for routing)
+- Compatible with AREDN mesh nodes (use BSSID 02:CA:FF:EE:BA:BE, SSID AREDN-freq-width, and babeld for routing)
 
 ### Disadvantages
 
-- No captive portal (nodogsplash requires AP mode)
-- No WPA/WPA2 (IBSS encryption support is limited)
-- All nodes are peers — no centralized DHCP without explicit configuration
+- No automatic beaconing for client discovery (clients must know the SSID/BSSID)
+- Manual client setup required (no "click to join" like AP mode)
 
 ## Limitations
 
